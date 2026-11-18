@@ -1,3 +1,5 @@
 <?php
 
-uses(JeffersonGoncalves\QuebecGovernance\Tests\TestCase::class)->in('Feature', 'Unit');
+use JeffersonGoncalves\QuebecGovernance\Tests\TestCase;
+
+uses(TestCase::class)->in('Feature', 'Unit');

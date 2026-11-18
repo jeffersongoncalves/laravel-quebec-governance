@@ -2,6 +2,7 @@
 
 namespace JeffersonGoncalves\QuebecGovernance;
 
+use JeffersonGoncalves\QuebecGovernance\Commands\ActivitiesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -10,9 +11,16 @@ class QuebecGovernanceServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-quebec-governance')
+            ->name('quebec-governance')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigrations();
+            ->hasTranslations()
+            ->hasMigrations(['create_quebec_processing_activities_table'])
+            ->hasCommand(ActivitiesCommand::class);
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->singleton(GovernanceManager::class);
     }
 }
